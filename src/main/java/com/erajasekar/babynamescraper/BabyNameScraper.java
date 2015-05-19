@@ -22,7 +22,7 @@ public class BabyNameScraper {
 
    // private static final Pattern namePattern = Pattern.compile("(.*)[(].*[)]");
 
-    private static final int NUMBER_TO_FILTER = 1;
+    private static final int NUMBER_TO_FILTER = 2;
 
     public static void main(String args[]) throws Exception{
 
@@ -31,8 +31,16 @@ public class BabyNameScraper {
                .map(name -> new BabyName(name, Gender.Boy))
                .filter(babyName -> babyName.getNumerologicalValue().number() == NUMBER_TO_FILTER)
                .collect(Collectors.toList());
-       names.forEach(System.out::println);
-        System.out.println(names.size());
+
+       int i=1;
+       for(BabyName name : names){
+           System.out.print(name + " , ");
+           if (i%4 == 0){
+               System.out.println();
+           }
+           i++;
+       }
+       System.out.println("Total : " + names.size());
 
     }
 
